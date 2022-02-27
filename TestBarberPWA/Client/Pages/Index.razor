@@ -1,0 +1,53 @@
+﻿@page "/"
+@using TestBarberPWA.Shared
+@using Syncfusion.Blazor.Grids
+
+<SfGrid DataSource="@People">
+	<GridColumns>
+		<GridColumn Field=@nameof(Person.PersonID) HeaderText="ID"></GridColumn>
+		<GridColumn Field=@nameof(Person.Forename) HeaderText="Forename"></GridColumn>
+		<GridColumn Field=@nameof(Person.Surname) HeaderText="Surname"></GridColumn>
+		<GridColumn Field=@nameof(Person.Email) HeaderText="Email"></GridColumn>
+		<GridColumn Field=@nameof(Person.IsEmployee) HeaderText="Employee"></GridColumn>
+	</GridColumns>
+</SfGrid>
+
+@code
+{
+	public List<Person> People { get; set; }
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		People = LoadData();
+	}
+
+	private List<Person> LoadData()
+	{
+		Person p1 = new Person
+			{
+				PersonID = 1,
+				Forename = "Aaron",
+				Surname = "Aaronson",
+				DateOfBirth = new DateTime(1991, 01, 01),
+				Gender = Gender.Male,
+				PhoneNo = "01234567890",
+				Email = "a.aaronson@aaronmail.com",
+				IsEmployee = false
+			};
+
+		Person p2 = new Person
+			{
+				PersonID = 2,
+				Forename = "Betty",
+				Surname = "Bettyson",
+				DateOfBirth = new DateTime(1992, 02, 02),
+				Gender = Gender.Female,
+				PhoneNo = "09876543210",
+				Email = "b.bettyson@bettymail.com",
+				IsEmployee = true
+			};
+
+		return new List<Person> { p1, p2 };
+	}
+}
