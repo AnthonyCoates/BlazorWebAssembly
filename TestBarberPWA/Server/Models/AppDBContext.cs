@@ -10,11 +10,11 @@ namespace TestBarberPWA.Server.Models
 
         }
 
-        public DbSet<Person>? People { get; set; }
-        public DbSet<Address>? Addresses { get; set; }
-        public DbSet<Service>? Services { get; set; }
-        public DbSet<Appointment>? Appointments { get; set; }
-        public DbSet<ServiceSold>? ServicesSold { get; set; }
+        public DbSet<Person> People { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<ServiceSold> ServicesSold { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
