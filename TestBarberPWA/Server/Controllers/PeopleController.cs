@@ -17,16 +17,14 @@ namespace TestBarberPWA.Server.Controllers
         [HttpGet]
         public async Task<ActionResult> GetPeople()
         {
-            //try
-            //{
-            //    return Ok(await peopleRepository.GetPeople());
-            //}
-            //catch (Exception)
-            //{
-            //    return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving People data from the database.");
-            //}
-
-            return Ok(await peopleRepository.GetPeople());
+            try
+            {
+                return Ok(await peopleRepository.GetPeople());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving People data from the database.");
+            }
         }
     }
 }
