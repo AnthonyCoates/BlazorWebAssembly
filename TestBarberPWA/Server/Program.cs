@@ -1,8 +1,14 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using TestBarberPWA.Server.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<AppDBContext>();
+
+builder.Services.AddScoped<IPeopleRepository, PeopleRepository>();
+builder.Services.AddScoped<IServicesRepository, ServicesRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();

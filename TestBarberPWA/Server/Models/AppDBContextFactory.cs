@@ -9,7 +9,6 @@ namespace TestBarberPWA.Server
         public AppDBContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDBContext>();
-            optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=BarberDB;Trusted_Connection=true");
 
             return new AppDBContext(optionsBuilder.Options);
         }

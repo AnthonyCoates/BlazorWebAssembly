@@ -5,9 +5,16 @@ namespace TestBarberPWA.Server.Models
 {
     public class AppDBContext : DbContext
     {
-        public AppDBContext(DbContextOptions<AppDBContext> options): base(options)
+        public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {
 
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            optionsBuilder.UseSqlServer(@"server=(localdb)\MSSQLLocalDB;database=BarberDB;Trusted_Connection=true");
         }
 
         public DbSet<Person> People { get; set; }
