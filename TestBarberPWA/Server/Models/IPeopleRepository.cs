@@ -6,8 +6,7 @@ namespace TestBarberPWA.Server.Models
     {
         Task<IEnumerable<Person>> Search(string name, Gender? gender);
         Task<IEnumerable<Person>> GetPeople();
-        Task<IEnumerable<Person>> GetEmployees();
-        Task<IEnumerable<Person>> GetCustomers();
+        Task<IEnumerable<Person>> GetEmployeesOrCustomers(bool isEmployee);
 
         Task<Person> GetPerson(int personID);
         Task<Person> GetPersonByEmail(string email);

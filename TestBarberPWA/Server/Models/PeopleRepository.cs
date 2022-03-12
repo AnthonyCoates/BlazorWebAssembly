@@ -31,21 +31,11 @@ namespace TestBarberPWA.Server.Models
             }
         }
 
-        public async Task<IEnumerable<Person>> GetCustomers()
+        public async Task<IEnumerable<Person>> GetEmployeesOrCustomers(bool ec)
         {
             IQueryable<Person> query = appDBContext.People;
 
-            query = query.Where(p => p.IsEmployee == false);
-
-            return await query.ToListAsync();
-        }
-
-        public async Task<IEnumerable<Person>> GetEmployees()
-        {
-
-            IQueryable<Person> query = appDBContext.People;
-
-            query = query.Where(p => p.IsEmployee == true);
+            query = query.Where(p => p.IsEmployee == ec);
 
             return await query.ToListAsync();
         }
@@ -58,7 +48,6 @@ namespace TestBarberPWA.Server.Models
         public async Task<Person> GetPerson(int personID)
         {
             return await appDBContext.People
-                .Include(p => p.IsEmployee)
                 .FirstOrDefaultAsync(p => p.PersonID == personID);
         }
 

@@ -5,7 +5,7 @@ namespace TestBarberPWA.Server.Models
 {
     public class AppDBContext : DbContext
     {
-        public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
+        public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) 
         {
 
         }
