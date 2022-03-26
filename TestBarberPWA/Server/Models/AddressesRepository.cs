@@ -3,11 +3,11 @@ using TestBarberPWA.Shared;
 
 namespace TestBarberPWA.Server.Models
 {
-    public class AddressRepository : IAddressesRepository
+    public class AddressesRepository : IAddressesRepository
     {
         private readonly AppDBContext appDBContext;
 
-        public AddressRepository(AppDBContext appDBContext)
+        public AddressesRepository(AppDBContext appDBContext)
         {
             this.appDBContext = appDBContext;
         }
