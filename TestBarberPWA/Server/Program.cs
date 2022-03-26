@@ -9,6 +9,9 @@ builder.Services.AddDbContext<AppDBContext>();
 
 builder.Services.AddScoped<IPeopleRepository, PeopleRepository>();
 builder.Services.AddScoped<IServicesRepository, ServicesRepository>();
+builder.Services.AddScoped<IAddressesRepository, AddressesRepository>();
+builder.Services.AddScoped<IAppointmentsRepository, AppointmentsRepository>();
+builder.Services.AddScoped<IServicesSoldRepository, ServicesSoldRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
