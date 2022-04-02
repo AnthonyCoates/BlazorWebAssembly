@@ -67,5 +67,43 @@ namespace TestBarberPWA.Server.Models
 
             return await query.ToListAsync();
         }
+
+        public async Task<Appointment> AddAppointment(Appointment appointment)
+        {
+            var result = await appDBContext.Appointments.AddAsync(appointment);
+            await appDBContext.SaveChangesAsync();
+
+            return result.Entity;
+        }
+
+        public async Task<Appointment> UpdateAppointment(Appointment appointment)
+        {
+            var result = await appDBContext.Appointments.FirstOrDefaultAsync(a => appointment.AppointmentID == appointment.AppointmentID);
+
+            if (result != null)
+            {
+                result.EmployeeID = appointment.EmployeeID;
+                result.CustomerID = appointment.CustomerID;
+                result.DateTime = appointment.DateTime;
+                result.Notes = appointment.Notes;
+
+                await appDBContext.SaveChangesAsync();
+
+                return result;
+            }
+
+            return null;
+        }
+
+        public async Task DeleteAppointment(int appointmentID)
+        {
+            var result = await appDBContext.Appointments.FirstOrDefaultAsync(a => a.AppointmentID == appointmentID);
+
+            if (result != null)
+            {
+                appDBContext.Appointments.Remove(result);
+                await appDBContext.SaveChangesAsync();
+            }
+        }
     }
 }

@@ -12,5 +12,10 @@ namespace TestBarberPWA.Server.Models
         Task<IEnumerable<Appointment>> GetEmployeeAppointments(int employeeID);
 
         Task<Appointment> GetAppointment(int appointmentID);
+
+        Task<Appointment> AddAppointment(Appointment appointment);
+        Task<Appointment> UpdateAppointment(Appointment appointment);
+        Task DeleteAppointment(int appointmentID);
+
     }
 }
