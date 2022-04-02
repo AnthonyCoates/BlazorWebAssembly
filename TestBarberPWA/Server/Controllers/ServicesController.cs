@@ -95,7 +95,7 @@ namespace TestBarberPWA.Server.Controllers
             {
                 if (id != service.ServiceID)
                 {
-                    return BadRequest("Person ID provided did not match the person's details.");
+                    return BadRequest("Service ID provided did not match the service's details.");
                 }
 
                 var personToUpdate = await servicesRepository.GetService(id);

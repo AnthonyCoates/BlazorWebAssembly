@@ -15,7 +15,7 @@ namespace TestBarberPWA.Server.Controllers
             this.peopleRepository = peopleRepository;
         }
 
-        [HttpGet("{search}")]
+        [HttpGet("search/{search}")]
         public async Task<ActionResult<IEnumerable<Person>>> Search(string? name, Gender? gender)
         {
             try
@@ -31,7 +31,7 @@ namespace TestBarberPWA.Server.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving People data from the database");
             }
         }
 

@@ -10,5 +10,9 @@ namespace TestBarberPWA.Server.Models
         Task<IEnumerable<Address>> GetAddress(string postcode);
 
         Task<Address> GetAddress(int addressID);
+
+        Task<Address> AddAddress(Address address);
+        Task<Address> UpdateAddress(Address address);
+        Task DeleteAddress(int addressID);
     }
 }
