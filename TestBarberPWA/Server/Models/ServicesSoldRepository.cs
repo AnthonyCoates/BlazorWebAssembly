@@ -36,5 +36,43 @@ namespace TestBarberPWA.Server.Models
 
             return await query.Where(a => a.ServiceID == serviceID).ToListAsync();
         }
+
+        public async Task<ServiceSold> AddServiceSold(ServiceSold serviceSold)
+        {
+            var result = await appDBContext.ServicesSold.AddAsync(serviceSold);
+            await appDBContext.SaveChangesAsync();
+
+            return result.Entity;
+        }
+
+        public async Task<ServiceSold> UpdateServiceSold(ServiceSold serviceSold)
+        {
+            var result = await appDBContext.ServicesSold.FirstOrDefaultAsync(s => serviceSold.AppointmentID == serviceSold.AppointmentID && serviceSold.ServiceID == serviceSold.ServiceID);
+
+            if (result != null)
+            {
+                result.AppointmentID = serviceSold.AppointmentID;
+                result.ServiceID = serviceSold.ServiceID;
+                result.Quantity = serviceSold.Quantity;
+                result.SubTotal = serviceSold.SubTotal;
+
+                await appDBContext.SaveChangesAsync();
+
+                return result;
+            }
+
+            return null;
+        }
+
+        public async Task DeleteServiceSold(int appointmentID, int serviceID)
+        {
+            var result = await appDBContext.ServicesSold.FirstOrDefaultAsync(s => s.AppointmentID == appointmentID && s.ServiceID == serviceID);
+
+            if (result != null)
+            {
+                appDBContext.ServicesSold.Remove(result);
+                await appDBContext.SaveChangesAsync();
+            }
+        }
     }
 }
