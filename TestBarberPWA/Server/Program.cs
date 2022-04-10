@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using TestBarberPWA.Client.Services;
 using TestBarberPWA.Server.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,12 +14,17 @@ builder.Services.AddScoped<IAddressesRepository, AddressesRepository>();
 builder.Services.AddScoped<IAppointmentsRepository, AppointmentsRepository>();
 builder.Services.AddScoped<IServicesSoldRepository, ServicesSoldRepository>();
 
+builder.Services.AddHttpClient<IPeopleService, PeopleService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7033");
+});
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();

@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using TestBarberPWA.Shared
+@using TestBarberPWA.Client.Pages
 @using Syncfusion.Blazor.Grids
 
 <SfGrid DataSource="@People">
@@ -16,38 +17,11 @@
 {
 	public List<Person> People { get; set; }
 
-	protected override void OnInitialized()
+	[Inject]
+	public IPeopleService PeopleService { get; set; }
+
+	protected override async Task OnInitializedAsync()
 	{
-		base.OnInitialized();
-		People = LoadData();
-	}
-
-	private List<Person> LoadData()
-	{
-		Person p1 = new Person
-			{
-				PersonID = 1,
-				Forename = "Aaron",
-				Surname = "Aaronson",
-				DateOfBirth = new DateTime(1991, 01, 01),
-				Gender = Gender.Male,
-				PhoneNo = "01234567890",
-				Email = "a.aaronson@aaronmail.com",
-				IsEmployee = false
-			};
-
-		Person p2 = new Person
-			{
-				PersonID = 2,
-				Forename = "Betty",
-				Surname = "Bettyson",
-				DateOfBirth = new DateTime(1992, 02, 02),
-				Gender = Gender.Female,
-				PhoneNo = "09876543210",
-				Email = "b.bettyson@bettymail.com",
-				IsEmployee = true
-			};
-
-		return new List<Person> { p1, p2 };
+		People = (await PeopleService.GetPeople()).ToList();
 	}
 }
