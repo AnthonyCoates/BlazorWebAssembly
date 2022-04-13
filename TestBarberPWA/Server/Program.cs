@@ -14,11 +14,6 @@ builder.Services.AddScoped<IAddressesRepository, AddressesRepository>();
 builder.Services.AddScoped<IAppointmentsRepository, AppointmentsRepository>();
 builder.Services.AddScoped<IServicesSoldRepository, ServicesSoldRepository>();
 
-builder.Services.AddHttpClient<IPeopleService, PeopleService>(client =>
-{
-    client.BaseAddress = new Uri("https://localhost:7033");
-});
-
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
