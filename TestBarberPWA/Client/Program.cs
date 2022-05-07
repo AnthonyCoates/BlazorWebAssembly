@@ -18,4 +18,6 @@ builder.Services.AddHttpClient<IPeopleService, PeopleService>(client =>
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddSyncfusionBlazor();
 
+builder.Services.AddScoped<PeopleAdapter>();
+
 await builder.Build().RunAsync();

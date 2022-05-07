@@ -40,9 +40,15 @@ namespace TestBarberPWA.Server.Models
             return await query.ToListAsync();
         }
 
-        public async Task<IEnumerable<Person>> GetPeople()
+        public async Task<PeopleDataResult> GetPeople(int skip = 0, int take = 10)
         {
-            return await appDBContext.People.ToListAsync();
+            PeopleDataResult result = new PeopleDataResult()
+            {
+                // Skip and Take methods here are for server-side paging
+                People = appDBContext.People.Skip(skip).Take(take),
+                Count = await appDBContext.People.CountAsync()
+            };
+            return result;
         }
 
         public async Task<Person> GetPerson(int personID)

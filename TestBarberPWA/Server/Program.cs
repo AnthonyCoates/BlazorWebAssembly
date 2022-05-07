@@ -6,7 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<AppDBContext>();
+builder.Services.AddDbContext<AppDBContext>
+    (
+        options => options.EnableSensitiveDataLogging() //Just need this lambda to debug the skip and take values for server-side paging
+    );
 
 builder.Services.AddScoped<IPeopleRepository, PeopleRepository>();
 builder.Services.AddScoped<IServicesRepository, ServicesRepository>();

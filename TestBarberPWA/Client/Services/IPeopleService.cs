@@ -5,7 +5,7 @@ namespace TestBarberPWA.Client.Services
     public interface IPeopleService
     {
         Task<IEnumerable<Person>> Search(string name, Gender? gender);
-        Task<IEnumerable<Person>> GetPeople();
+        Task<PeopleDataResult> GetPeople(int skip, int take);
         Task<IEnumerable<Person>> GetEmployeesOrCustomers(bool isEmployee);
 
         Task<Person> GetPerson(int personID);

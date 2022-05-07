@@ -4,42 +4,25 @@
 @using Syncfusion.Blazor.Grids
 
 
-<SfSpinner @bind-Visible="SpinnerVisible" Label="Retrieving Data" Size="100">
-</SfSpinner>
+<SfGrid TValue="Person" AllowPaging="true">
 
-@if (People != null)
-{
-	<SfGrid DataSource="@People" AllowPaging="true">
+	<SfDataManager Adaptor="Adaptors.CustomAdaptor" AdaptorInstance="@typeof(PeopleAdapter)">
+	</SfDataManager>
 
-		<GridPageSettings PageSize="10" PageSizes="@PagerDropdown" PageCount="3">
-		</GridPageSettings>
+	<GridPageSettings PageSize="10" PageSizes="@PagerDropdown" PageCount="3">
+	</GridPageSettings>
 
-		<GridColumns>
-			<GridColumn Field=@nameof(Person.PersonID) HeaderText="ID"></GridColumn>
-			<GridColumn Field=@nameof(Person.Forename) HeaderText="Forename"></GridColumn>
-			<GridColumn Field=@nameof(Person.Surname) HeaderText="Surname"></GridColumn>
-			<GridColumn Field=@nameof(Person.Email) HeaderText="Email"></GridColumn>
-			<GridColumn Field=@nameof(Person.IsEmployee) HeaderText="Employee"></GridColumn>
-		</GridColumns>
+	<GridColumns>
+		<GridColumn Field=@nameof(Person.PersonID) HeaderText="ID"></GridColumn>
+		<GridColumn Field=@nameof(Person.Forename) HeaderText="Forename"></GridColumn>
+		<GridColumn Field=@nameof(Person.Surname) HeaderText="Surname"></GridColumn>
+		<GridColumn Field=@nameof(Person.Email) HeaderText="Email"></GridColumn>
+		<GridColumn Field=@nameof(Person.IsEmployee) HeaderText="Employee"></GridColumn>
+	</GridColumns>
 
-	</SfGrid>
-}
+</SfGrid>
 
 @code
 {
 	public string[] PagerDropdown { get; set; } = new string[] { "All", "1", "5", "10", "15", "20" };
-
-	public List<Person> People { get; set; }
-
-	[Inject]
-	public IPeopleService PeopleService { get; set; }
-
-	public bool SpinnerVisible { get; set; }
-
-	protected override async Task OnInitializedAsync()
-	{
-		SpinnerVisible = true;
-		People = (await PeopleService.GetPeople()).ToList();
-		SpinnerVisible = false;
-	}
 }

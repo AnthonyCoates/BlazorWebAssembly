@@ -27,9 +27,9 @@ namespace TestBarberPWA.Client.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Person>> GetPeople()
+        public async Task<PeopleDataResult> GetPeople(int skip, int take)
         {
-            return await httpClient.GetFromJsonAsync<IEnumerable<Person>>("/api/people");
+            return await httpClient.GetFromJsonAsync<PeopleDataResult>($"/api/people?skip={skip}&take={take}");
         }
 
         public Task<Person> GetPerson(int personID)

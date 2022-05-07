@@ -36,11 +36,11 @@ namespace TestBarberPWA.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetPeople()
+        public async Task<ActionResult> GetPeople(int skip = 0, int take = 10)
         {
             try
             {
-                return Ok(await peopleRepository.GetPeople());
+                return Ok(await peopleRepository.GetPeople(skip, take));
             }
             catch (Exception)
             {
